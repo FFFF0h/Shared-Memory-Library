@@ -384,6 +384,24 @@ namespace SharedMemory
         }
 
         /// <summary>
+        /// Gets the free node count.
+        /// </summary>
+        /// <value>
+        /// The free node count.
+        /// </value>
+        public int FreeNodeCount
+        {
+            get
+            {
+                int origin = _nodeHeader->WriteStart - _nodeHeader->ReadEnd;
+                if (origin < 0)
+                    origin += _nodeHeader->NodeCount;
+
+                return _nodeHeader->NodeCount - origin;
+            }
+        }
+
+        /// <summary>
         /// Attempts to reserve a node from the linked-list for writing with the specified timeout.
         /// </summary>
         /// <param name="timeout">The number of milliseconds to wait if a node is not immediately available for writing.</param>

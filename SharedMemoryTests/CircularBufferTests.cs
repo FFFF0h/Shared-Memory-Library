@@ -31,6 +31,7 @@ using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using System.Threading;
 using SharedMemory;
+using System.IO;
 
 namespace SharedMemoryTests
 {
@@ -887,6 +888,121 @@ namespace SharedMemoryTests
                     for (var i = 0; i < writeBuf.Length; i++)
                         Assert.AreEqual(writeBuf[i], readBuf[i], String.Format("Data written does not match data read at index {0}", i));
                 }
+            }
+        }
+
+        #endregion
+
+        #region Stream tests
+
+        [TestMethod]
+        public void Stream_Constructor()
+        {
+            string name = Guid.NewGuid().ToString();
+            using (CircularBufferStream producer = new CircularBufferStream(name))
+            using (CircularBufferStream consumer = new CircularBufferStream(name))
+            {
+
+            }
+        }
+
+        [TestMethod]
+        public void Stream_Simple_ReadWrite()
+        {
+            string name = Guid.NewGuid().ToString();
+            string expected = "This is a test !";
+
+            using (CircularBufferStream buffer = new CircularBufferStream(name))
+            using (StreamWriter writer = new StreamWriter(buffer))
+            using (StreamReader reader = new StreamReader(buffer))
+            {
+                writer.WriteLine(expected);
+                writer.Flush();
+                string readed = reader.ReadLine();
+                Assert.AreEqual(expected, readed, false);
+            }
+        }
+
+        [TestMethod]
+        public void Stream_Simple_BigWrite_ReadWrite()
+        {
+            string name = Guid.NewGuid().ToString();
+
+            Random r = new Random();
+            int bufSize = 32;
+            byte[] data = new byte[bufSize * 2 + 10];
+            byte[] readBuf = new byte[bufSize * 2  + 10];
+
+            r.NextBytes(data);
+
+            using (CircularBufferStream buffer = new CircularBufferStream(name, 512, bufSize))
+            using (BinaryWriter writer = new BinaryWriter(buffer))
+            using (BinaryReader reader = new BinaryReader(buffer))
+            {
+                writer.Write(data, 0, data.Length);
+                writer.Flush();
+                //reader.Read(readBuf, 0, readBuf.Length);
+
+                writer.Write(data, 0, data.Length);
+                writer.Flush();
+                reader.Read(readBuf, 0, readBuf.Length);
+
+                writer.Write(data, 0, data.Length);
+                writer.Flush();
+                reader.Read(readBuf, 0, readBuf.Length);
+
+                for (var i = 0; i < data.Length; i++)
+                    Assert.AreEqual(data[i], readBuf[i], String.Format("Data written does not match data read at index {0}", i));
+            }
+        }
+
+
+        [TestMethod]
+        public void Stream_Simple_OutOfMemory_ReadWrite()
+        {
+            string name = Guid.NewGuid().ToString();
+
+            Random r = new Random();
+            int bufSize = 32;
+            byte[] data = new byte[bufSize * 2 + 10];
+            byte[] readBuf = new byte[bufSize * 2 + 10];
+
+            r.NextBytes(data);
+
+            try
+            {
+                using (CircularBufferStream buffer = new CircularBufferStream(name, 4, bufSize))
+                using (BinaryWriter writer = new BinaryWriter(buffer))
+                using (BinaryReader reader = new BinaryReader(buffer))
+                {
+                    writer.Write(data, 0, data.Length);
+                    writer.Flush();
+                    writer.Write(data, 0, data.Length);
+                    writer.Flush();
+
+                    Assert.Fail();
+                }
+            }
+            catch (IOException)
+            {
+            }
+        }
+
+
+        [TestMethod]
+        public void Stream_ConsumerProcuder_ReadWrite()
+        {
+            string name = Guid.NewGuid().ToString();
+            using (CircularBufferStream producer = new CircularBufferStream(name))
+            using (StreamWriter writer = new StreamWriter(producer))
+            using (CircularBufferStream consumer = new CircularBufferStream(name))
+            using (StreamReader reader = new StreamReader(consumer))
+            {
+                string expected = "This is a test !";
+                writer.WriteLine(expected);
+                writer.Flush();
+                string readed = reader.ReadLine();
+                Assert.AreEqual(expected, readed, false);
             }
         }
 
