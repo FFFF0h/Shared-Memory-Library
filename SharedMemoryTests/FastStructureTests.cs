@@ -100,7 +100,7 @@ namespace SharedMemoryTests
             {
                 var size = FastStructure<HasIncompatibleStructure>.Size;
             }
-            catch (TypeInitializationException e)
+            catch (TypeInitializationException)
             {
                 return;
             }
@@ -115,7 +115,7 @@ namespace SharedMemoryTests
             {
                 var size = FastStructure<IncompatibleNestedStructure2>.Size;
             }
-            catch (TypeInitializationException e)
+            catch (TypeInitializationException)
             {
                 return;
             }
