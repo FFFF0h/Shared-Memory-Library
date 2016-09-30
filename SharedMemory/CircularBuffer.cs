@@ -368,6 +368,22 @@ namespace SharedMemory
         #region Node Writing
 
         /// <summary>
+        /// Gets a value indicating whether this instance has free node for writing.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this instance has free node; otherwise, <c>false</c>.
+        /// </value>
+        public bool HasFreeNode
+        {
+            get
+            {
+                int blockIndex = _nodeHeader->WriteStart;
+                Node* node = this[blockIndex];
+                return node->Next != _nodeHeader->ReadEnd;
+            }
+        }
+
+        /// <summary>
         /// Attempts to reserve a node from the linked-list for writing with the specified timeout.
         /// </summary>
         /// <param name="timeout">The number of milliseconds to wait if a node is not immediately available for writing.</param>
@@ -579,6 +595,22 @@ namespace SharedMemory
         public NodeHeader ReadNodeHeader()
         {
             return (NodeHeader)Marshal.PtrToStructure(new IntPtr(_nodeHeader), typeof(NodeHeader));
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether this instance has node ready to be red.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this instance has node ready to be red; otherwise, <c>false</c>.
+        /// </value>
+        public bool HasNodeToRead
+        {
+            get
+            {
+                int blockIndex = _nodeHeader->ReadStart;
+                Node* node = this[blockIndex];
+                return blockIndex != _nodeHeader->WriteEnd;
+            }
         }
 
         /// <summary>
