@@ -164,7 +164,7 @@ namespace SharedMemory
                 throw new ArgumentOutOfRangeException("bufferSize", bufferSize, "Buffer size must be larger than zero when creating a new shared memory buffer.");
 #if DEBUG
             else if (!ownsSharedMemory && bufferSize > 0)
-                System.Diagnostics.Debug.Write("Buffer size is ignored when opening an existing shared memory buffer.", "Warning");
+                System.Diagnostics.Debug.WriteLine("Buffer size is ignored when opening an existing shared memory buffer.", "Warning");
 #endif
             #endregion
 
