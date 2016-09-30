@@ -167,14 +167,14 @@ namespace SharedMemory
         public struct Node
         {
             /// <summary>
-            /// The previous node.
+            /// The next node.
             /// </summary>
             public int Next;
 
             /// <summary>
-            /// The next node.
+            /// The previous node.
             /// </summary>
-            public int Prev;
+            public int Previous;
 
             /// <summary>
             /// A flag used while returning a node for writing after having been read.
@@ -326,20 +326,20 @@ namespace SharedMemory
 
             // First node
             nodes[N].Next = 1;
-            nodes[N].Prev = NodeCount - 1;
+            nodes[N].Previous = NodeCount - 1;
             nodes[N].Offset = NodeBufferOffset;
             nodes[N].Index = N;
             // Middle nodes
             for (N = 1; N < NodeCount - 1; N++)
             {
                 nodes[N].Next = N + 1;
-                nodes[N].Prev = N - 1;
+                nodes[N].Previous = N - 1;
                 nodes[N].Offset = NodeBufferOffset + (NodeBufferSize * N);
                 nodes[N].Index = N;
             }
             // Last node
             nodes[N].Next = 0;
-            nodes[N].Prev = NodeCount - 2;
+            nodes[N].Previous = NodeCount - 2;
             nodes[N].Offset = NodeBufferOffset + (NodeBufferSize * N);
             nodes[N].Index = N;
 
@@ -644,7 +644,7 @@ namespace SharedMemory
 #pragma warning restore 0420
 
                // If a writer thread is waiting on "node available" signal the event
-                if (node->Prev == _nodeHeader->WriteStart)
+                if (node->Previous == _nodeHeader->WriteStart)
                         NodeAvailable.Set();
             }
         }
