@@ -247,7 +247,7 @@ namespace SharedMemory
                 throw new ArgumentOutOfRangeException("nodeCount", nodeCount, "The node count must be a minimum of 2.");
 #if DEBUG
             else if (!ownsSharedMemory && (nodeCount != 0 || nodeBufferSize > 0))
-                System.Diagnostics.Debug.Write("Node count and nodeBufferSize are ignored when opening an existing shared memory circular buffer.", "Warning");
+                System.Diagnostics.Debug.WriteLine("Node count and nodeBufferSize are ignored when opening an existing shared memory circular buffer.", "Warning");
 #endif
             #endregion
 
