@@ -5,8 +5,8 @@
   <PropertyGroup>
     <ProjectGuid>{DFA407A8-AEA8-48BB-AE6C-709DF51D276F}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>SharedMemory</RootNamespace>
-    <AssemblyName>SharedMemory</AssemblyName>
+    <RootNamespace>System.IO.SharedMemory</RootNamespace>
+    <AssemblyName>System.IO.SharedMemory</AssemblyName>
     <DocumentationFile>$(AssemblyName).XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(APPVEYOR)' == 'True' ">
