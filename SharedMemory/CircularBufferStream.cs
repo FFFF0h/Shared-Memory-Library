@@ -56,7 +56,7 @@ namespace System.IO.SharedMemory
         /// </summary>
         public override bool CanWrite
         {
-            get { return _circularBuffer != null && !_circularBuffer.ShuttingDown && _circularBuffer.HasFreeNode; }
+            get { return _circularBuffer != null && !_circularBuffer.ShuttingDown; }
         }
 
         /// <summary>
@@ -210,6 +210,8 @@ namespace System.IO.SharedMemory
                 throw new ArgumentOutOfRangeException("count");
             if (offset < 0)
                 throw new ArgumentOutOfRangeException("offset");
+            if (!CanWrite)
+                throw new NotSupportedException("Write is not supported.");
 
             byte[] tempBuffer;
             if (count < buffer.Length - offset)
@@ -240,7 +242,7 @@ namespace System.IO.SharedMemory
                 offset += wr;
                 written += wr;
 
-                if (!CanWrite && wr == 0)
+                if (!_circularBuffer.HasFreeNode && wr == 0)
                     throw new OutOfMemoryException("The underlying buffer is full.");
 
                if (sw.ElapsedMilliseconds > _writeTimeout) throw new TimeoutException(string.Format("Waited {0} miliseconds", _writeTimeout));
