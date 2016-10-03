@@ -151,6 +151,8 @@ namespace System.IO.SharedMemory
                 throw new ArgumentOutOfRangeException("count");
             if (offset < 0)
                 throw new ArgumentOutOfRangeException("offset");
+            if (!CanRead)
+                throw new NotSupportedException("Read is not supported.");
 
             int red = 0;
             while (red < count && _circularBuffer.HasNodeToRead)
