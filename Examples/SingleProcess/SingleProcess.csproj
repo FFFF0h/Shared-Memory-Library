@@ -23,9 +23,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\SharedMemory\SharedMemory.csproj">
+    <ProjectReference Include="..\..\SharedMemory\System.IO.SharedMemory.csproj">
       <Project>{dfa407a8-aea8-48bb-ae6c-709df51d276f}</Project>
-      <Name>SharedMemory</Name>
+      <Name>System.IO.SharedMemory</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

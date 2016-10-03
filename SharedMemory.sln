@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingleProcess", "Examples\SingleProcess\SingleProcess.csproj", "{EA64397B-5AB6-46BB-8D0D-26887BF2D4CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedMemory", "SharedMemory\SharedMemory.csproj", "{DFA407A8-AEA8-48BB-AE6C-709DF51D276F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "System.IO.SharedMemory", "SharedMemory\System.IO.SharedMemory.csproj", "{DFA407A8-AEA8-48BB-AE6C-709DF51D276F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientTest", "Examples\ClientTest\ClientTest.csproj", "{57019AF7-C4AC-476B-8790-E95133220D8B}"
 EndProject
@@ -74,8 +74,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{EA64397B-5AB6-46BB-8D0D-26887BF2D4CD} = {5B5C5EF2-B61D-4C63-B303-6B1876F28960}
 		{57019AF7-C4AC-476B-8790-E95133220D8B} = {5B5C5EF2-B61D-4C63-B303-6B1876F28960}
 		{82C40D26-757D-4850-99BA-2341AB9D0E4D} = {5B5C5EF2-B61D-4C63-B303-6B1876F28960}
-		{EA64397B-5AB6-46BB-8D0D-26887BF2D4CD} = {5B5C5EF2-B61D-4C63-B303-6B1876F28960}
 	EndGlobalSection
 EndGlobal
