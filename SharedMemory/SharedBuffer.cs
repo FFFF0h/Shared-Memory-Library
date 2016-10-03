@@ -33,7 +33,7 @@ using System.Security.Permissions;
 using System.Text;
 using System.Threading;
 
-namespace SharedMemory
+namespace System.IO.SharedMemory
 {
     /// <summary>
     /// Abstract base class that provides client/server support for reading/writing structures to a buffer within a <see cref="MemoryMappedFile" />.
@@ -144,7 +144,7 @@ namespace SharedMemory
         /// Create a new <see cref="SharedBuffer"/> instance with the specified name and buffer size
         /// </summary>
         /// <param name="name">The name of the shared memory</param>
-        /// <param name="bufferSize">The buffer size in bytes. The total shared memory size will be <code>Marshal.SizeOf(SharedMemory.SharedHeader) + bufferSize</code></param>
+        /// <param name="bufferSize">The buffer size in bytes. The total shared memory size will be <code>Marshal.SizeOf(System.IO.SharedMemory.SharedHeader) + bufferSize</code></param>
         /// <param name="ownsSharedMemory">Whether or not the current instance owns the shared memory. If true a new shared memory will be created and initialised otherwise an existing one is opened.</param>
         /// <remarks>
         /// <para>The maximum total shared memory size is dependent upon the system and current memory fragmentation.</para>

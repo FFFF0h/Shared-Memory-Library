@@ -27,7 +27,7 @@
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Runtime.InteropServices;
-using SharedMemory;
+using System.IO.SharedMemory;
 
 namespace SharedMemoryTests
 {

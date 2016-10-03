@@ -27,10 +27,10 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SharedMemory;
+using System.IO.SharedMemory;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
-using SharedMemory.Utilities;
+using System.IO.SharedMemory.Utilities;
 
 namespace SharedMemoryTests
 {

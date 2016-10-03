@@ -31,7 +31,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SharedMemory")]
+[assembly: AssemblyTitle("System.IO.SharedMemory")]
 [assembly: AssemblyDescription("")]
 #if DEBUG
 [assembly: AssemblyConfiguration("Debug")]
@@ -39,7 +39,7 @@ using System.Runtime.InteropServices;
 [assembly:AssemblyConfiguration("Release")]
 #endif
 [assembly: AssemblyCompany("Justin Stenning")]
-[assembly: AssemblyProduct("SharedMemory")]
+[assembly: AssemblyProduct("System.IO.SharedMemory")]
 [assembly: AssemblyCopyright("Copyright © 2014 Justin Stenning")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -53,4 +53,4 @@ using System.Runtime.InteropServices;
 [assembly: Guid("c19482c8-8222-4314-97d5-ac3502419f97")]
 
 [assembly: AssemblyVersion("1.0.1.0")]
-[assembly: AssemblyFileVersion("1.0.1.0")]
+[assembly: AssemblyFileVersion("1.0.1.1")]

@@ -30,6 +30,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.IO.SharedMemory;
+
 #if NET40Plus
 using System.Threading.Tasks;
 #endif
@@ -62,7 +64,7 @@ namespace ServerTest
 
 
             Console.WriteLine("Create shared memory circular buffer");
-            using (var theServer = new SharedMemory.CircularBuffer("TEST", count, size))
+            using (var theServer = new CircularBuffer("TEST", count, size))
             {
                 Console.WriteLine("Circular buffer producer created.");
                 Console.WriteLine("Ready for client...");

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO.SharedMemory;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace SharedMemoryTests
@@ -10,8 +11,8 @@ namespace SharedMemoryTests
         public void Constructor_ProducerConsumer_Created()
         {
             var name = Guid.NewGuid().ToString();
-            using (var buf = new SharedMemory.BufferReadWrite(name, 1024))
-            using (var buf2 = new SharedMemory.BufferReadWrite(name))
+            using (var buf = new BufferReadWrite(name, 1024))
+            using (var buf2 = new BufferReadWrite(name))
             {
 
             }
@@ -26,8 +27,8 @@ namespace SharedMemoryTests
             byte[] readData = new byte[1024];
             r.NextBytes(data);
 
-            using (var buf = new SharedMemory.BufferReadWrite(name, 1024))
-            using (var buf2 = new SharedMemory.BufferReadWrite(name))
+            using (var buf = new BufferReadWrite(name, 1024))
+            using (var buf2 = new BufferReadWrite(name))
             {
                 buf.Write(data);
                 buf2.Read(readData);
@@ -48,8 +49,8 @@ namespace SharedMemoryTests
             byte[] readData = new byte[1024];
 
 
-            using (var buf = new SharedMemory.BufferReadWrite(name, 1024))
-            using (var buf2 = new SharedMemory.BufferReadWrite(name))
+            using (var buf = new BufferReadWrite(name, 1024))
+            using (var buf2 = new BufferReadWrite(name))
             {
                 // Set a small timeout to speed up the test
                 buf2.ReadWriteTimeout = 0;
@@ -65,7 +66,7 @@ namespace SharedMemoryTests
                         // Read should timeout with TimeoutException because buf.ReleaseWriteLock has not been called
                         buf2.Read(readData);
                     }
-                    catch (TimeoutException e)
+                    catch (TimeoutException)
                     {
                         timedout = true;
                     }

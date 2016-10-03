@@ -24,7 +24,7 @@
 //   "Fast IPC Communication Using Shared Memory and InterlockedCompareExchange"
 //   http://www.codeproject.com/Articles/14740/Fast-IPC-Communication-Using-Shared-Memory-and-Int
 using Microsoft.Win32.SafeHandles;
-using SharedMemory;
+using System.IO.SharedMemory;
 using System;
 using System.Collections.Generic;
 using System.Linq;

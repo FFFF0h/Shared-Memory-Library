@@ -29,7 +29,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Security.Permissions;
 
-namespace SharedMemory
+namespace System.IO.SharedMemory
 {
     /// <summary>
     /// A generic fixed-length shared memory array of structures with support for simple inter-process read/write synchronisation.

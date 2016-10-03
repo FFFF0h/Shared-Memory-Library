@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace SharedMemory
+namespace System.IO.SharedMemory
 {
     /// <summary>
     /// A stream based on the memory mapped circular buffer. Allows to share data between process without lock.

@@ -30,7 +30,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using SharedMemory;
+using System.IO.SharedMemory;
 
 #if NET40Plus
 using System.Threading.Tasks;
@@ -47,7 +47,7 @@ namespace ClientTest
             Console.ReadLine();
 
             Console.WriteLine("Open existing shared memory circular buffer");
-            using (SharedMemory.CircularBuffer theClient = new SharedMemory.CircularBuffer("TEST"))
+            using (CircularBuffer theClient = new CircularBuffer("TEST"))
             {
                 Console.WriteLine("Buffer {0} opened, NodeBufferSize: {1}, NodeCount: {2}", theClient.Name, theClient.NodeBufferSize, theClient.NodeCount);
 

@@ -31,7 +31,7 @@ using System.Text;
 using Microsoft.Win32.SafeHandles;
 using System.Security.Permissions;
 using System.Runtime;
-using SharedMemory;
+using System.IO.SharedMemory;
 using System.Runtime.InteropServices;
 using System.Threading;
 

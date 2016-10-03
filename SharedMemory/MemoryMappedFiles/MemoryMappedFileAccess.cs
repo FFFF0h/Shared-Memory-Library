@@ -23,7 +23,7 @@
 // The SharedMemory library is inspired by the following Code Project article:
 //   "Fast IPC Communication Using Shared Memory and InterlockedCompareExchange"
 //   http://www.codeproject.com/Articles/14740/Fast-IPC-Communication-Using-Shared-Memory-and-Int
-using SharedMemory;
+using System.IO.SharedMemory;
 using System;
 using System.Collections.Generic;
 using System.Linq;

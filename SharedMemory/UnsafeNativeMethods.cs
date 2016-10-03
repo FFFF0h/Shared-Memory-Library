@@ -31,7 +31,7 @@ using System.Security;
 using System.Text;
 using Microsoft.Win32.SafeHandles;
 
-namespace SharedMemory
+namespace System.IO.SharedMemory
 {
     [System.Security.SuppressUnmanagedCodeSecurity]
     internal class UnsafeNativeMethods

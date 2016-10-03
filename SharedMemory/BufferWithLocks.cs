@@ -32,7 +32,7 @@ using System.Security.Permissions;
 using System.Text;
 using System.Threading;
 
-namespace SharedMemory
+namespace System.IO.SharedMemory
 {
     /// <summary>
     /// <para>Extends <see cref="SharedBuffer"/> to support simple thread-synchronisation for read/write 

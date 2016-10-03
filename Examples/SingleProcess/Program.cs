@@ -32,6 +32,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using CommandLine;
+using System.IO.SharedMemory;
 #if NET40Plus
 using System.Threading.Tasks;
 #endif
@@ -104,7 +105,7 @@ namespace SingleProcess
             long bytesWritten = 0;
             long bytesRead = 0;
             string name = Guid.NewGuid().ToString();
-            var server = new SharedMemory.CircularBuffer(name, count, size);
+            var server = new CircularBuffer(name, count, size);
             
             Stopwatch sw = Stopwatch.StartNew();
 
@@ -112,7 +113,7 @@ namespace SingleProcess
             {
                 byte[] testData = new byte[size];
 
-                var client = new SharedMemory.CircularBuffer(name);
+                var client = new CircularBuffer(name);
 
                 Stopwatch clientTime = new Stopwatch();
                 clientTime.Start();
@@ -148,7 +149,7 @@ namespace SingleProcess
             {
                 int serverIndex = Interlocked.Increment(ref index);
 
-                var writer = (serverIndex == 1 ? server : new SharedMemory.CircularBuffer(name));
+                var writer = (serverIndex == 1 ? server : new CircularBuffer(name));
                 bool done = false;
                 TimeSpan doneTime = TimeSpan.MinValue;
                 for (; ; )

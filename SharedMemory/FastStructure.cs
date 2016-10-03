@@ -28,7 +28,7 @@ using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 
-namespace SharedMemory
+namespace System.IO.SharedMemory
 {
     /// <summary>
     /// Provides fast reading and writing of generic structures to a memory location using IL emitted functions.

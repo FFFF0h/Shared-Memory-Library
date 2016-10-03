@@ -29,7 +29,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Permissions;
 
-namespace SharedMemory.Utilities
+namespace System.IO.SharedMemory.Utilities
 {
     /// <summary>
     /// Like <see cref="T:System.ArraySegment`1"/>, but works with <see cref="T:System.Collections.Generic.IList`1"/> not just an array.

@@ -31,7 +31,7 @@ using System.Runtime.InteropServices;
 using System.Security.Permissions;
 using System.Text;
 
-namespace SharedMemory
+namespace System.IO.SharedMemory
 {
     /// <summary>
     /// Read/Write buffer with support for simple inter-process read/write synchronisation.
